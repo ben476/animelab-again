@@ -1,0 +1,37 @@
+.appBar {
+    /* z-index: 9;
+    background: radial-gradient(ellipse at bottom, rgba(121, 22, 221, .7), rgba(59, 0, 135, .7) 40%, #3b0087);
+    height: 80px; */
+    padding: 0 5vw;
+    /* display: flex;
+    flex-direction: row;
+    align-items: flex-end; */
+    height: 80px;
+    background-color: #3b0087;
+    background: radial-gradient(ellipse at bottom, rgba(121, 22, 221, .7), rgba(59, 0, 135, .7) 40%, #3b0087);
+    /* position: relative; */
+    z-index: 300;
+    box-shadow: 0 0 30px 5px rgba(0, 0, 0, .8);
+    border-bottom: 1px solid #7916dd;
+    /* padding: 0 0 0 15px; */
+    /* transition: all .3s cubic-bezier(0.6, .2, .1, 1) 0s */
+}
+
+.logo {
+    height: 80px;
+}
+
+.toolbar {
+    width: 100%
+}
+
+.avatar {
+    border: 2px solid var(--color-secondary);
+    margin: var(--spacing);
+    width: calc(6 * var(--spacing));
+    height: calc(6 * var(--spacing));
+}
+
+.popover {
+    width: calc(40 * var(--spacing))
+}
