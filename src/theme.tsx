@@ -52,14 +52,14 @@ const theme = responsiveFontSizes(createTheme(
       MuiButton: {
         styleOverrides: {
           root: {
-            borderRadius: 30,
+            borderRadius: "20em",
             backgroundColor: "#fff",
             ":hover": {
               backgroundColor: "#0fa",
               boxShadow: "0 0px 15px 0 #0fa"
             },
             color: "#333",
-            padding: "0.4rem 1.2rem",
+            padding: "0.4em 1.2em",
             textTransform: "none",
           }
         }

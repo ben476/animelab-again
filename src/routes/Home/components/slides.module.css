@@ -119,12 +119,12 @@
 .slideSubtitle {
     /* font-size: 1.2rem; */
     color: #fff;
-    margin-bottom: 1rem;
-    line-height: 1rem;
+    margin-bottom: 1em;
+    line-height: 1em;
 }
 
 .slideButton {
-    margin-top: 1rem;
-    font-size: large;
-    padding: 0.3rem 1.2rem 0.4rem 1.2rem;
+    margin-top: 1em;
+    font-size: 1em;
+    padding: 0.3em 1.2em 0.4em 1.2em;
 }
