@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import AppBar from './Appbar';
+import { Outlet } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -19,14 +20,9 @@ function Copyright() {
 
 export default function App() {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <AppBar />
-        <Typography variant="h4" component="h1" gutterBottom>
-          Material UI Vite.js example in TypeScript
-        </Typography>
-        <Copyright />
-      </Box>
-    </Container>
+    <>
+      <AppBar />
+      <Outlet />
+    </>
   );
 }
