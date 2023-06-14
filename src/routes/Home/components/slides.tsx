@@ -3,7 +3,7 @@ import { ChevronLeft as Back, ChevronRight as Forward } from "@mui/icons-materia
 import styles from "./slides.module.css"
 import { Link } from "react-router-dom";
 import { slides } from "./slidesData";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
 export type SlideProps = {
     title: string;
@@ -35,13 +35,15 @@ export const Slide = forwardRef(({ title, subtitle, image, action, link, key }: 
 })
 
 export default function Slides() {
-    const slideRef = slides.map(() => useRef<HTMLDivElement>(null));
+    const [lastInteraction, setLastInteraction] = useState(0)
+
+    const slideRef = useRef<HTMLDivElement[]>([])
 
     function findLargestSlide() {
         let largestSlide = 0;
         let largestWidth = 0;
-        slideRef.forEach((slide, index) => {
-            const boundingRect = slide.current?.getBoundingClientRect();
+        slideRef.current.forEach((slide, index) => {
+            const boundingRect = slide.getBoundingClientRect();
             if (boundingRect) {
                 const start = Math.max(boundingRect.left, 0);
                 const end = Math.min(boundingRect.right, window.innerWidth);
@@ -55,31 +57,26 @@ export default function Slides() {
         return largestSlide;
     }
 
-    return (
-        <Box className={styles.carousel}>
-            <IconButton className={styles.carouselButton} style={{ left: 0 }} onClick={() => {
-                const largestSlide = findLargestSlide();
-                slideRef[(largestSlide - 1 + slides.length) % slides.length].current?.scrollIntoView({
+    function goToSlide(delta: number) {
+        const largestSlide = findLargestSlide();
+                slideRef.current[(largestSlide + delta + slides.length) % slides.length].scrollIntoView({
                     behavior: "smooth",
                     block: "center",
                     inline: "center"
                 });
-            }}>
+    }
+
+    return (
+        <Box className={styles.carousel} onMouseMove={() => setLastInteraction(Date.now())} onPointerDown={() => setLastInteraction(Date.now())}>
+            <IconButton className={styles.carouselButton} style={{ left: 0 }} onClick={() => goToSlide(-1)}>
                 <Back style={{ fontSize: 75 }} />
             </IconButton>
             <Box className={styles.carouselContent}>
                 {slides.map((slide, index) => (
-                    <Slide key={index} {...slide} ref={slideRef[index]} />
+                    <Slide key={index} {...slide} ref={(el: HTMLDivElement) => slideRef.current[index] = el} />
                 ))}
             </Box>
-            <IconButton className={styles.carouselButton} style={{ right: 0 }} onClick={() => {
-                const largestSlide = findLargestSlide();
-                slideRef[(largestSlide + 1) % slides.length].current?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                    inline: "center"
-                });
-            }}>
+            <IconButton className={styles.carouselButton} style={{ right: 0 }} onClick={() => goToSlide(1)}>
                 <Forward style={{ fontSize: 75 }} />
             </IconButton>
         </Box>
