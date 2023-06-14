@@ -66,6 +66,14 @@ export default function Slides() {
                 });
     }
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            goToSlide(1)
+        }, 8000)
+
+        return () => clearInterval(interval)
+    }, [lastInteraction])
+
     return (
         <Box className={styles.carousel} onMouseMove={() => setLastInteraction(Date.now())} onPointerDown={() => setLastInteraction(Date.now())}>
             <IconButton className={styles.carouselButton} style={{ left: 0 }} onClick={() => goToSlide(-1)}>
