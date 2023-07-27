@@ -37,6 +37,7 @@ export const Slide = forwardRef(({ title, subtitle, image, action, link, key }: 
 export default function Slides() {
     const [lastInteraction, setLastInteraction] = useState(0)
 
+    const containerRef = useRef<HTMLDivElement>(null)
     const slideRef = useRef<HTMLDivElement[]>([])
 
     function findLargestSlide() {
@@ -59,11 +60,14 @@ export default function Slides() {
 
     function goToSlide(delta: number) {
         const largestSlide = findLargestSlide();
-                slideRef.current[(largestSlide + delta + slides.length) % slides.length].scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                    inline: "center"
-                });
+                // slideRef.current[(largestSlide + delta + slides.length) % slides.length].scrollIntoView({
+                //     behavior: "smooth",
+                //     block: "center",
+                //     inline: "center"
+                // });
+
+        if (containerRef.current)
+        containerRef.current.scrollLeft = slideRef.current[(largestSlide + delta + slides.length) % slides.length].offsetLeft
     }
 
     useEffect(() => {
@@ -79,7 +83,7 @@ export default function Slides() {
             <IconButton className={styles.carouselButton} style={{ left: 0 }} onClick={() => goToSlide(-1)}>
                 <Back style={{ fontSize: 75 }} />
             </IconButton>
-            <Box className={styles.carouselContent}>
+            <Box ref={containerRef} className={styles.carouselContent}>
                 {slides.map((slide, index) => (
                     <Slide key={index} {...slide} ref={(el: HTMLDivElement) => slideRef.current[index] = el} />
                 ))}
