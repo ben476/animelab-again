@@ -1,4 +1,13 @@
-{
+interface Genre {
+  description: string;
+  name: string;
+  slug: string;
+  image: string;
+}
+
+type Genres = Record<string, Genre>;
+
+export const genres: Genres = {
   "action": {
     "description": "No time for story!* This is adrenaline fueled, in-your-face kaboom candy. *Well, actually there are stories... explosion stories.",
     "name": "Action",

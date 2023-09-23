@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import { Stack } from '@mui/material';
 import { PlayArrowOutlined } from '@mui/icons-material';
-import genres from "./genres.json"
+import { genres } from "./genres"
 
 // https://remix.run/guides/routing#index-routes
 export default function Home() {
