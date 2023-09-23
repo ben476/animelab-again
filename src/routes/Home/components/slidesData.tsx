@@ -6,7 +6,7 @@ import jinroh from "../images/jinroh.jpg";
 import sao from "../images/sao.jpg";
 import uzaki from "../images/uzaki.jpg";
 import log from "../images/log.jpg";
-import { SlideProps } from "./Slides";
+import { SlideProps } from "./slides";
 
 export const slides: SlideProps[] = [
     {
