@@ -68,15 +68,20 @@ export default function Home() {
                 <img src={`https://anime.benhong.me/img/anime/${show.wide}`} alt={show.name} className={styles.banner} />
             </Box>
             <Grid2 container spacing={2} sx={(theme) => ({
-                paddingInline: theme.spacing(8),
+                // paddingInline: 0,
+                // display: "none",
+                // padding: "0",
+                [theme.breakpoints.up("xs")]: {
+                    paddingInline: theme.spacing(4),
+                },
                 [theme.breakpoints.up("md")]: {
-                    paddingLeft: theme.spacing(12),
+                    paddingInline: theme.spacing(12),
                 },
                 [theme.breakpoints.up("lg")]: {
-                    paddingLeft: theme.spacing(16),
+                    paddingInline: theme.spacing(16),
                 },
                 [theme.breakpoints.up("xl")]: {
-                    paddingLeft: theme.spacing(32),
+                    paddingInline: theme.spacing(32),
                 },
             })}>
                 <Grid2 xs={0} md={4} lg={3} sx={{ position: "relative" }}>
@@ -84,15 +89,18 @@ export default function Home() {
                         src={`https://anime.benhong.me/img/anime/${show.portrait}`}
                         height={1200}
                         width={800}
-                        style={{
+                        sx={(theme) => ({
                             width: "100%",
                             height: "auto",
                             // boxShadow: "11px -12px 37px 0 rgba(0,0,0,.3)",
                             borderRadius: '4px',
                             marginTop: show.stage || show.wide ? "-30%" : "-10px",
-                            position: "absolute"
+                            position: "absolute",
+                            [theme.breakpoints.down("md")]: {
+                                display: "none"
+                            },
                             // zIndex: 1
-                        }}
+                        })}
                     />
                 </Grid2>
                 <Grid2 xs={12} md={8} lg={9} sx={(theme) => ({
@@ -109,7 +117,7 @@ export default function Home() {
                         >
                             {show.name}
                         </Typography>
-                        <Typography variant="h5" sx={{ fontStyle: "italic", fontWeight: 400, marginTop: -1, paddingLeft: "2px" }}>
+                        <Typography variant="h5" sx={{ fontStyle: "italic", fontWeight: 400, marginTop: "-5px", paddingLeft: "2px" }}>
                             {show.original}
                         </Typography>
                     </Box>
@@ -126,7 +134,7 @@ export default function Home() {
                         readOnly
                     />
                     <Typography
-                        variant="subtitle1"
+                        variant="subtitle2"
                         color="textSecondary"
                     >
                         {[show.year, show.ratingCode, show.languages.join(" and ")]
@@ -136,15 +144,17 @@ export default function Home() {
                 </Grid2>
             </Grid2>
             <Grid2 container spacing={2} sx={(theme) => ({
-                paddingInline: theme.spacing(8),
+                [theme.breakpoints.up("xs")]: {
+                    paddingInline: theme.spacing(4),
+                },
                 [theme.breakpoints.up("md")]: {
-                    paddingLeft: theme.spacing(12),
+                    paddingInline: theme.spacing(12),
                 },
                 [theme.breakpoints.up("lg")]: {
-                    paddingLeft: theme.spacing(16),
+                    paddingInline: theme.spacing(16),
                 },
                 [theme.breakpoints.up("xl")]: {
-                    paddingLeft: theme.spacing(32),
+                    paddingInline: theme.spacing(32),
                 },
                 backgroundColor: "#35017A",
                 marginTop: 2
@@ -167,7 +177,7 @@ export default function Home() {
                         color="primary"
                         endIcon={<PlayArrowOutlined style={{ fontSize: "42px" }} />}
                     >
-                        <Typography variant="button" sx={{ marginTop: "-0.1em", marginInline: "0.5em", fontSize: "2em", textTransform: "none" }}>
+                        <Typography variant="h4" sx={{ marginInline: "0.5em", textTransform: "none" }}>
                             <span style={{ fontWeight: 600 }}>
                                 Watch
                             </span>
@@ -204,7 +214,7 @@ export default function Home() {
                                     // textAlign: "center",
                                     // color: "rgba(255,255,255,.9)",
                                     '& .MuiChip-label': {
-                                        marginTop: "-2px"
+                                        // marginTop: "-0.2em"
                                     },
                                 }}
 
