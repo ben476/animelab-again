@@ -177,7 +177,7 @@ export default function Home() {
                         color="primary"
                         endIcon={<PlayArrowOutlined style={{ fontSize: "42px" }} />}
                     >
-                        <Typography variant="h4" sx={{ marginInline: "0.5em", textTransform: "none" }}>
+                        <Typography variant="h5" sx={{ marginInline: "0.5em", textTransform: "none" }}>
                             <span style={{ fontWeight: 600 }}>
                                 Watch
                             </span>
